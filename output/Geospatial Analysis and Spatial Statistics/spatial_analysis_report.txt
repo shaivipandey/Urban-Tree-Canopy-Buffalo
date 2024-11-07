@@ -1,0 +1,55 @@
+BUFFALO TREE CANOPY SPATIAL ANALYSIS REPORT
+==================================================
+
+MORAN'S I STATISTICS BY YEAR
+------------------------------
+
+2011:
+  Moran's I: 0.107
+  p-value: 0.099
+  z-score: 1.313
+  Interpretation: random spatial pattern
+
+2016:
+  Moran's I: 0.085
+  p-value: 0.139
+  z-score: 1.054
+  Interpretation: random spatial pattern
+
+2021:
+  Moran's I: 0.119
+  p-value: 0.081
+  z-score: 1.408
+  Interpretation: random spatial pattern
+
+
+INTERPRETATION GUIDE
+--------------------
+
+Moran's I Interpretation:
+- Values range from -1 (perfect dispersion) to +1 (perfect clustering)
+- Values near 0 indicate random spatial pattern
+- Positive values indicate similar values cluster together
+- Negative values indicate dissimilar values cluster together
+
+Statistical Significance:
+- p-value < 0.05 indicates statistically significant spatial pattern
+- z-score > 1.96 or < -1.96 indicates significant clustering at 95% confidence
+
+Hot Spot Analysis Interpretation:
+- Hot Spots: Areas where high tree coverage clusters together
+- Cold Spots: Areas where low tree coverage clusters together
+- Confidence levels indicate strength of clustering:
+  * 99.9%: Very strong evidence of clustering
+  * 99%: Strong evidence of clustering
+  * 95%: Moderate evidence of clustering
+
+Implications:
+- Clusters of high tree coverage (hot spots) may indicate:
+  * Well-established neighborhoods with mature trees
+  * Areas with successful tree planting programs
+  * Parks and green spaces
+- Clusters of low tree coverage (cold spots) may indicate:
+  * Areas that need targeted tree planting efforts
+  * Areas with recent development or urban density
+  * Industrial or commercial zones
