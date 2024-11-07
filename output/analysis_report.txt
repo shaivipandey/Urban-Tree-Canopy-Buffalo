@@ -1,0 +1,105 @@
+Buffalo Tree Canopy Analysis Report (2011-2021)
+Generated on: 2024-11-07 12:17:02
+================================================================================
+
+SUMMARY OF FINDINGS
+------------------
+
+Overall Changes:
+- Total Change in Mean Coverage: -1.7%
+- Total Change in Area with Trees: -11.1%
+- Average Annual Change in Mean Coverage: -0.17% per year
+- Average Annual Change in Area with Trees: -1.11% per year
+
+Year-by-Year Statistics:
+-----------------------
+2011:
+- Mean tree canopy cover: 8.2%
+- Median tree canopy cover: 0.0%
+- Maximum canopy cover: 96.0%
+- Standard deviation: 11.4%
+- Percent of area with trees: 46.1%
+- Percent of area with high canopy (>50%): 1.0%
+2012:
+- Mean tree canopy cover: 8.2%
+- Median tree canopy cover: 0.0%
+- Maximum canopy cover: 94.0%
+- Standard deviation: 11.4%
+- Percent of area with trees: 46.0%
+- Percent of area with high canopy (>50%): 1.0%
+2013:
+- Mean tree canopy cover: 8.2%
+- Median tree canopy cover: 0.0%
+- Maximum canopy cover: 94.0%
+- Standard deviation: 11.4%
+- Percent of area with trees: 46.0%
+- Percent of area with high canopy (>50%): 1.0%
+2014:
+- Mean tree canopy cover: 8.2%
+- Median tree canopy cover: 0.0%
+- Maximum canopy cover: 94.0%
+- Standard deviation: 11.4%
+- Percent of area with trees: 45.7%
+- Percent of area with high canopy (>50%): 1.0%
+2015:
+- Mean tree canopy cover: 8.1%
+- Median tree canopy cover: 0.0%
+- Maximum canopy cover: 94.0%
+- Standard deviation: 11.4%
+- Percent of area with trees: 45.4%
+- Percent of area with high canopy (>50%): 1.0%
+2016:
+- Mean tree canopy cover: 7.6%
+- Median tree canopy cover: 0.0%
+- Maximum canopy cover: 94.0%
+- Standard deviation: 11.2%
+- Percent of area with trees: 43.5%
+- Percent of area with high canopy (>50%): 1.0%
+2017:
+- Mean tree canopy cover: 6.9%
+- Median tree canopy cover: 0.0%
+- Maximum canopy cover: 94.0%
+- Standard deviation: 11.2%
+- Percent of area with trees: 38.3%
+- Percent of area with high canopy (>50%): 1.0%
+2018:
+- Mean tree canopy cover: 6.8%
+- Median tree canopy cover: 0.0%
+- Maximum canopy cover: 94.0%
+- Standard deviation: 11.2%
+- Percent of area with trees: 37.6%
+- Percent of area with high canopy (>50%): 1.0%
+2019:
+- Mean tree canopy cover: 6.6%
+- Median tree canopy cover: 0.0%
+- Maximum canopy cover: 94.0%
+- Standard deviation: 11.2%
+- Percent of area with trees: 36.7%
+- Percent of area with high canopy (>50%): 1.0%
+2020:
+- Mean tree canopy cover: 6.6%
+- Median tree canopy cover: 0.0%
+- Maximum canopy cover: 94.0%
+- Standard deviation: 11.3%
+- Percent of area with trees: 36.0%
+- Percent of area with high canopy (>50%): 1.1%
+2021:
+- Mean tree canopy cover: 6.5%
+- Median tree canopy cover: 0.0%
+- Maximum canopy cover: 94.0%
+- Standard deviation: 11.5%
+- Percent of area with trees: 35.0%
+- Percent of area with high canopy (>50%): 1.2%
+
+Year-over-Year Changes:
+----------------------
+2011 to 2012: -0.0%
+2012 to 2013: +0.0%
+2013 to 2014: -0.0%
+2014 to 2015: -0.1%
+2015 to 2016: -0.5%
+2016 to 2017: -0.7%
+2017 to 2018: -0.1%
+2018 to 2019: -0.1%
+2019 to 2020: -0.0%
+2020 to 2021: -0.1%

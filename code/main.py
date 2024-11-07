@@ -9,6 +9,8 @@ import contextily as ctx
 from pyproj import CRS, Transformer
 import seaborn as sns
 from matplotlib.colors import LinearSegmentedColormap
+import os
+from datetime import datetime
 
 def get_buffalo_bounds():
     """
@@ -105,7 +107,7 @@ def analyze_tree_canopy(tree_cover, year):
     
     return stats
 
-def create_difference_maps(data_by_year):
+def create_difference_maps(data_by_year, output_dir):
     """
     Create maps showing the difference in tree canopy between years
     """
@@ -145,9 +147,10 @@ def create_difference_maps(data_by_year):
     
     plt.suptitle('Changes in Tree Canopy Coverage (2011-2021)', y=1.05, fontsize=16)
     plt.tight_layout()
-    plt.show()
+    plt.savefig(os.path.join(output_dir, 'difference_maps.png'), dpi=300, bbox_inches='tight')
+    plt.close()
 
-def create_enhanced_visualizations(stats_list, data_by_year):
+def create_enhanced_visualizations(stats_list, data_by_year, output_dir):
     """
     Create enhanced visualizations showing patterns and trends
     """
@@ -257,11 +260,15 @@ def create_enhanced_visualizations(stats_list, data_by_year):
     
     plt.suptitle('Buffalo Tree Canopy Analysis (2011-2021)', y=1.02, fontsize=16)
     plt.tight_layout()
-    plt.show()
+    plt.savefig(os.path.join(output_dir, 'trend_analysis.png'), dpi=300, bbox_inches='tight')
+    plt.close()
 
-def print_trend_summary(stats_list):
+    # Save statistics to CSV
+    df.to_csv(os.path.join(output_dir, 'tree_canopy_statistics.csv'), index=False)
+
+def generate_report(stats_list, output_dir):
     """
-    Print a summary of trends over time
+    Generate a comprehensive report of the analysis
     """
     if not stats_list:
         return
@@ -270,38 +277,71 @@ def print_trend_summary(stats_list):
     start_year = df.iloc[0]['year']
     end_year = df.iloc[-1]['year']
     
-    print(f"\nTREND SUMMARY ({start_year}-{end_year})")
-    print("=" * 50)
+    report = f"""Buffalo Tree Canopy Analysis Report ({start_year}-{end_year})
+Generated on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
+{'='*80}
+
+SUMMARY OF FINDINGS
+------------------
+"""
     
     # Calculate total changes
     total_change_mean = df.iloc[-1]['mean_coverage'] - df.iloc[0]['mean_coverage']
     total_change_area = df.iloc[-1]['percent_area_with_trees'] - df.iloc[0]['percent_area_with_trees']
-    
-    print(f"Total Change in Mean Coverage: {total_change_mean:.1f}%")
-    print(f"Total Change in Area with Trees: {total_change_area:.1f}%")
     
     # Calculate annual rates of change
     years_diff = df.iloc[-1]['year'] - df.iloc[0]['year']
     annual_rate_mean = total_change_mean / years_diff
     annual_rate_area = total_change_area / years_diff
     
-    print(f"Average Annual Change in Mean Coverage: {annual_rate_mean:.2f}% per year")
-    print(f"Average Annual Change in Area with Trees: {annual_rate_area:.2f}% per year")
+    report += f"""
+Overall Changes:
+- Total Change in Mean Coverage: {total_change_mean:.1f}%
+- Total Change in Area with Trees: {total_change_area:.1f}%
+- Average Annual Change in Mean Coverage: {annual_rate_mean:.2f}% per year
+- Average Annual Change in Area with Trees: {annual_rate_area:.2f}% per year
+
+Year-by-Year Statistics:
+-----------------------"""
     
-    # Print year-over-year changes
-    print("\nYear-over-Year Changes:")
+    for _, row in df.iterrows():
+        report += f"""
+{row['year']}:
+- Mean tree canopy cover: {row['mean_coverage']:.1f}%
+- Median tree canopy cover: {row['median_coverage']:.1f}%
+- Maximum canopy cover: {row['max_coverage']:.1f}%
+- Standard deviation: {row['std_coverage']:.1f}%
+- Percent of area with trees: {row['percent_area_with_trees']:.1f}%
+- Percent of area with high canopy (>50%): {row['area_high_canopy']:.1f}%"""
+    
+    report += "\n\nYear-over-Year Changes:\n----------------------"
     for i in range(len(df)-1):
         year1 = df.iloc[i]['year']
         year2 = df.iloc[i+1]['year']
         change = df.iloc[i+1]['mean_coverage'] - df.iloc[i]['mean_coverage']
-        print(f"{year1} to {year2}: {change:+.1f}%")
+        report += f"\n{year1} to {year2}: {change:+.1f}%"
+    
+    # Save report
+    with open(os.path.join(output_dir, 'analysis_report.txt'), 'w') as f:
+        f.write(report)
 
 if __name__ == "__main__":
+    # Create output directory if it doesn't exist
+    output_dir = "output"
+    os.makedirs(output_dir, exist_ok=True)
+    
     # Define paths for all years
     data_paths = {
         2011: "data/nlcd_tcc_CONUS_2011_v2021-4/nlcd_tcc_conus_2011_v2021-4.tif",
+        2012: "data/nlcd_tcc_CONUS_2012_v2021-4/nlcd_tcc_conus_2012_v2021-4.tif",
+        2013: "data/nlcd_tcc_CONUS_2013_v2021-4/nlcd_tcc_conus_2013_v2021-4.tif",
+        2014: "data/nlcd_tcc_CONUS_2014_v2021-4/nlcd_tcc_conus_2014_v2021-4.tif",
+        2015: "data/nlcd_tcc_CONUS_2015_v2021-4/nlcd_tcc_conus_2015_v2021-4.tif",
         2016: "data/nlcd_tcc_CONUS_2016_v2021-4/nlcd_tcc_conus_2016_v2021-4.tif",
+        2017: "data/nlcd_tcc_CONUS_2017_v2021-4/nlcd_tcc_conus_2017_v2021-4.tif",
+        2018: "data/nlcd_tcc_CONUS_2018_v2021-4/nlcd_tcc_conus_2018_v2021-4.tif",
         2019: "data/nlcd_tcc_CONUS_2019_v2021-4/nlcd_tcc_conus_2019_v2021-4.tif",
+        2020: "data/nlcd_tcc_CONUS_2020_v2021-4/nlcd_tcc_conus_2020_v2021-4.tif",
         2021: "data/nlcd_tcc_CONUS_2021_v2021-4/nlcd_tcc_conus_2021_v2021-4.tif"
     }
     
@@ -322,10 +362,10 @@ if __name__ == "__main__":
                 stats_list.append(stats)
     
     if data_by_year:
-        # Create visualizations and print trend summary
-        print("\nGenerating enhanced visualizations and trend analysis...")
-        create_difference_maps(data_by_year)
-        create_enhanced_visualizations(stats_list, data_by_year)
-        print_trend_summary(stats_list)
+        print("\nGenerating visualizations and analysis...")
+        create_difference_maps(data_by_year, output_dir)
+        create_enhanced_visualizations(stats_list, data_by_year, output_dir)
+        generate_report(stats_list, output_dir)
+        print(f"\nAnalysis complete. Results saved to {output_dir}/")
     else:
         print("No data was successfully loaded.")
